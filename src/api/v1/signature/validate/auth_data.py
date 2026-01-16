@@ -1,5 +1,7 @@
 from aiogram.utils.auth_widget import check_integrity
 from fastapi import Request, Response, status, HTTPException
+import hashlib
+import hmac
 
 from src.api.v1.signature.validate.router import router
 from src.schemas import ValidateAuthDataRequest
@@ -23,10 +25,11 @@ async def validate_auth_data_signature(
     try:
         is_auth_data_valid = check_integrity(
             token=settings.BOT_TOKEN.get_secret_value(),
-            data=validate_request.model_dump(),
+            data=validate_request.model_dump(exclude_unset=True),
         )
     except ValueError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     if is_auth_data_valid:
         response.status_code = status.HTTP_200_OK
+        return
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)

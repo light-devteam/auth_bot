@@ -6,7 +6,7 @@ authors = [
     {name = "TiRe",email = "zientenin@mail.ru"}
 ]
 readme = "README.md"
-requires-python = "3.13.7"
+requires-python = "3.13.11"
 dependencies = [
     "fastapi (>=0.121.0,<0.122.0)",
     "uvicorn (>=0.38.0,<0.39.0)",
@@ -24,3 +24,10 @@ package-mode = false
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+test = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "pytest-asyncio (>=1.3.0,<2.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)"
+]

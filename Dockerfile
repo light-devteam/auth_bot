@@ -10,7 +10,7 @@ WORKDIR ${DIRECTORY}
 RUN apk add --no-cache curl
 
 RUN pip install --upgrade pip
-RUN pip3 install --upgrade poetry==2.1.2
+RUN pip3 install --upgrade poetry==2.2.1
 
 COPY ./poetry.lock ${DIRECTORY}/poetry.lock
 COPY ./pyproject.toml ${DIRECTORY}/pyproject.toml
